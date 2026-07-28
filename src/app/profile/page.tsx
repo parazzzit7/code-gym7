@@ -1,22 +1,20 @@
-"use client";
+'use client'
 
-import { Alert, Button, Spin, Typography } from "antd";
+import { Alert, Button, Spin, Typography } from 'antd'
 
-import { UserCard, useGetUserByIdQuery } from "@/entities/user";
-import { TodoList } from "@/widgets/todo-list";
+import { ProfileProgress, UserCard, useGetUserByIdQuery } from '@/entities/user'
 
-const { Title } = Typography;
+import { TodoList } from '@/widgets/todo-list'
+
+import styles from './profile-page.module.scss'
+
+const { Title } = Typography
 
 export default function ProfilePage() {
-  const {
-    data: user,
-    isLoading,
-    isError,
-    refetch,
-  } = useGetUserByIdQuery(1);
+  const { data: user, isLoading, isError, refetch } = useGetUserByIdQuery(1)
 
   if (isLoading) {
-    return <Spin size="large" />;
+    return <Spin size="large" />
   }
 
   if (isError || !user) {
@@ -26,14 +24,20 @@ export default function ProfilePage() {
         message="Не удалось загрузить пользователя"
         action={<Button onClick={refetch}>Повторить</Button>}
       />
-    );
+    )
   }
 
   return (
-    <>
-      <Title level={1}>Профиль</Title>
+    <div className={styles.page}>
+      <Title className={styles.title} level={1}>
+        Профиль
+      </Title>
+
       <UserCard user={user} />
+
+      <ProfileProgress />
+
       <TodoList userId={user.id} />
-    </>
-  );
+    </div>
+  )
 }

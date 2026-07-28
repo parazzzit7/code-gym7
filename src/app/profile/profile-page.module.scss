@@ -1,0 +1,14 @@
+.page {
+  display: grid;
+  gap: 32px;
+}
+
+.title {
+  margin: 0 !important;
+}
+
+@media (max-width: 600px) {
+  .page {
+    gap: 24px;
+  }
+}
