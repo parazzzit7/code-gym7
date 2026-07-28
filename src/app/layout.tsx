@@ -4,6 +4,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry'
 import { StoreProvider } from '@/app/providers/store-provider'
 import { AppFooter } from '@/widgets/app-footer'
 import { AppHeader } from '@/widgets/app-header'
+import { AppMobileNavigation } from '@/widgets/app-mobile-navigation'
 
 import './globals.css'
 import styles from './layout.module.scss'
@@ -29,6 +30,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <main className={styles.content}>{children}</main>
 
               <AppFooter />
+
+              <AppMobileNavigation />
             </div>
           </StoreProvider>
         </AntdRegistry>

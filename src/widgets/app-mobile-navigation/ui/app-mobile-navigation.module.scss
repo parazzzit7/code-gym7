@@ -1,0 +1,29 @@
+.navigation {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .navigation {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    z-index: 200;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+
+    padding: 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.16);
+    backdrop-filter: blur(12px);
+  }
+
+  .navigation a,
+  .navigation button {
+    width: 100%;
+  }
+}
