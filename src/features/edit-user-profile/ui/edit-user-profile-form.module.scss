@@ -1,23 +1,151 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 20px;
+.profile {
+  padding: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #ffffff;
 }
 
-.fullWidth {
-  grid-column: 1 / -1;
+.profile h2 {
+  margin: 0 0 16px;
+  font-size: 15px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) 280px;
+  gap: 28px;
+  align-items: start;
+}
+
+.avatarBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  text-align: center;
+}
+
+.avatar {
+  background: #edf4ff;
+  color: #1762c4;
+  font-weight: 700;
+}
+
+.avatarBlock span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.fields,
+.twoColumns,
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+}
+
+.subscription {
+  padding: 18px;
+  border-radius: 4px;
+  background: #eef5ff;
+  font-size: 12px;
+}
+
+.subscription p {
+  line-height: 1.5;
+}
+
+.subscription ul {
+  display: grid;
+  gap: 6px;
+  padding-left: 18px;
+}
+
+.section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #edf0f4;
+}
+
+.sectionTitle,
+.skillTitle {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.skillTitle {
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.skills {
+  gap: 14px 28px;
+}
+
+.statistics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.statistic {
+  padding: 14px;
+  border: 1px solid #edf0f4;
+  border-radius: 4px;
 }
 
 .message {
-  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.actions button {
+  min-width: 180px;
+}
+
+@media (max-width: 900px) {
+  .top {
+    grid-template-columns: 130px minmax(0, 1fr);
+  }
+
+  .subscription {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 600px) {
-  .grid {
+  .profile {
+    padding: 18px 14px;
+  }
+
+  .top {
     grid-template-columns: 1fr;
   }
 
-  .fullWidth {
-    grid-column: auto;
+  .fields,
+  .twoColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .skills {
+    gap: 12px 18px;
+  }
+
+  .statistics {
+    gap: 6px;
+  }
+
+  .statistic {
+    padding: 8px;
+  }
+
+  .actions button {
+    width: 100%;
   }
 }
