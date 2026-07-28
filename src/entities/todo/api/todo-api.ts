@@ -2,7 +2,7 @@ import { baseApi } from "@/shared/api";
 
 import type { Todo, UpdateTodoRequest } from "../model/todo.types";
 
-const todoApi = baseApi.injectEndpoints({
+const todoApiWithQueries = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getTodos: builder.query<Todo[], void>({
       query: () => "/todos",
@@ -43,7 +43,11 @@ const todoApi = baseApi.injectEndpoints({
         { type: "Todo", id: todoId },
       ],
     }),
+  }),
+});
 
+const todoApi = todoApiWithQueries.injectEndpoints({
+  endpoints: (builder) => ({
     updateTodo: builder.mutation<Todo, UpdateTodoRequest>({
       query: ({ id, completed }) => ({
         url: `/todos/${id}`,
@@ -53,9 +57,41 @@ const todoApi = baseApi.injectEndpoints({
         },
       }),
 
-      invalidatesTags: (_result, _error, { id }) => [
-        { type: "Todo", id },
-      ],
+      async onQueryStarted(
+        { id, userId, completed },
+        { dispatch, queryFulfilled },
+      ) {
+        const userTodosPatch = dispatch(
+          todoApiWithQueries.util.updateQueryData(
+            "getTodosByUserId",
+            userId,
+            (todos) => {
+              const todo = todos.find((item) => item.id === id);
+
+              if (todo) {
+                todo.completed = completed;
+              }
+            },
+          ),
+        );
+
+        const todoDetailsPatch = dispatch(
+          todoApiWithQueries.util.updateQueryData(
+            "getTodoById",
+            id,
+            (todo) => {
+              todo.completed = completed;
+            },
+          ),
+        );
+
+        try {
+          await queryFulfilled;
+        } catch {
+          userTodosPatch.undo();
+          todoDetailsPatch.undo();
+        }
+      },
     }),
   }),
 });

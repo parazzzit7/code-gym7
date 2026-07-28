@@ -7,5 +7,6 @@ export interface Todo {
 
 export interface UpdateTodoRequest {
   id: number;
+  userId: number;
   completed: boolean;
 }

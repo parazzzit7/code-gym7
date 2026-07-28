@@ -1,38 +1,27 @@
-"use client";
+'use client'
 
-import { Alert, Spin, Typography } from "antd";
+import { Alert, Spin, Typography } from 'antd'
 
-import {
-  TodoCard,
-  useGetTodosByUserIdQuery,
-} from "@/entities/todo";
+import { useGetTodosByUserIdQuery } from '@/entities/todo'
+import { ToggleTodoCard } from '@/features/toggle-todo'
 
-import styles from "./todo-list.module.scss";
+import styles from './todo-list.module.scss'
 
-const { Title } = Typography;
+const { Title } = Typography
 
 type TodoListProps = {
-  userId: number;
-};
+  userId: number
+}
 
 export function TodoList({ userId }: TodoListProps) {
-  const {
-    data: todos,
-    isLoading,
-    isError,
-  } = useGetTodosByUserIdQuery(userId);
+  const { data: todos, isLoading, isError } = useGetTodosByUserIdQuery(userId)
 
   if (isLoading) {
-    return <Spin size="large" />;
+    return <Spin size="large" />
   }
 
   if (isError || !todos) {
-    return (
-      <Alert
-        type="error"
-        message="Не удалось загрузить задачи"
-      />
-    );
+    return <Alert type="error" message="Не удалось загрузить задачи" />
   }
 
   return (
@@ -40,10 +29,10 @@ export function TodoList({ userId }: TodoListProps) {
       <Title level={2}>Задачи пользователя</Title>
 
       <div className={styles.list}>
-        {todos.map((todo) => (
-          <TodoCard key={todo.id} todo={todo} />
+        {todos.map(todo => (
+          <ToggleTodoCard key={todo.id} todo={todo} />
         ))}
       </div>
     </section>
-  );
+  )
 }
