@@ -1,34 +1,5 @@
-'use client'
-
-import { Alert, Button, Spin, Typography } from 'antd'
-
-import { UserCard, useGetUserByIdQuery } from '@/entities/user'
-
-const { Title } = Typography
+import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  const { data: user, isLoading, isError, refetch } = useGetUserByIdQuery(1)
-
-  if (isLoading) {
-    return <Spin size="large" />
-  }
-
-  if (isError || !user) {
-    return (
-      <Alert
-        type="error"
-        message="Не удалось загрузить пользователя"
-        action={<Button onClick={refetch}>Повторить</Button>}
-      />
-    )
-  }
-
-  return (
-    <>
-      <Title level={1}>Code Gym</Title>
-      <UserCard user={user} />
-      <TodoList userId={user.id} />
-    </>
-  )
+  redirect("/profile");
 }
-import { TodoList } from '@/widgets/todo-list'
