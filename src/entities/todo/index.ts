@@ -9,3 +9,4 @@ export type {
   Todo,
   UpdateTodoRequest,
 } from "./model/todo.types";
+export { TodoCard } from "./ui/todo-card/todo-card";

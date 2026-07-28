@@ -32,6 +32,8 @@ export default function HomePage() {
     <main>
       <Title level={1}>Code Gym</Title>
       <UserCard user={user} />
+      <TodoList userId={user.id} />
     </main>
   );
 }
+import { TodoList } from "@/widgets/todo-list";
