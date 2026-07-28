@@ -15,8 +15,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ru">
       <body>
-        <AntdRegistry>{children}</AntdRegistry>
+        <AntdRegistry>
+  <StoreProvider>{children}</StoreProvider>
+</AntdRegistry>
       </body>
     </html>
   );
 }
+import { StoreProvider } from "@/app/providers/store-provider";
