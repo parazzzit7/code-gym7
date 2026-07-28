@@ -1,16 +1,130 @@
 .footer {
-  border-top: 1px solid #e8e8e8;
-  background: #ffffff;
-  color: #737373;
+  background: #1756b7;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .container {
-  width: min(100% - 32px, 1200px);
+  width: min(100% - 40px, 1120px);
   margin: 0 auto;
-  padding: 24px 0;
-  text-align: center;
+  padding: 40px 0 20px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 64px;
+}
+
+.about {
+  max-width: 420px;
+}
+
+.about p {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.links,
+.contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.links h3,
+.contacts h3 {
+  margin: 0 0 6px;
+  color: #ffffff;
   font-size: 14px;
 }
+
+.links a,
+.contacts a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+}
+
+.links a:hover,
+.contacts a:hover {
+  color: #ffffff;
+}
+
+.subscribe {
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 460px);
+  align-items: center;
+  gap: 32px;
+
+  margin-top: 32px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.subscribe strong {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.subscribe p {
+  margin: 6px 0 0;
+  font-size: 12px;
+}
+
+.subscribeForm {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.subscribeForm button {
+  background: #ffffff;
+  color: #1756b7;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 18px;
+  font-size: 11px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .top {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 700px) {
+  .top {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about {
+    grid-column: 1 / -1;
+  }
+
+  .subscribe {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 600px) {
   .footer {
     display: none;
