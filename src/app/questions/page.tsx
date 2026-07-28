@@ -1,13 +1,17 @@
 import { QuestionsList } from '@/widgets/questions-list'
 
+import styles from './questions-page.module.scss'
+
 export default function QuestionsPage() {
   return (
-    <>
-      <h1>Вопросы с собесов</h1>
+    <div className={styles.page}>
+      <header>
+        <h1>Вопросы с собесов</h1>
 
-      <p>Выбери тему, чтобы открыть её подробное описание.</p>
+        <p>Выбери вопрос и перейди к подробной теме.</p>
+      </header>
 
       <QuestionsList />
-    </>
+    </div>
   )
 }

@@ -1,22 +1,63 @@
 .card {
-  height: 100%;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.number {
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+  background: #edf4ff;
+  color: #1762c4;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  height: 100%;
+  display: grid;
+  gap: 4px;
 }
 
-.title {
-  flex: 1;
-  margin: 0;
+.content strong {
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+.content span {
+  color: #64748b;
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .card {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .card > :nth-child(3) {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .card > :last-child {
+    grid-column: 2;
+  }
+
+  .card > :last-child,
+  .card > :last-child button {
+    width: 100%;
+  }
 }
