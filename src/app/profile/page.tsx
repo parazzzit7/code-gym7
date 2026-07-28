@@ -4,6 +4,8 @@ import { Alert, Button, Spin, Typography } from 'antd'
 
 import { ProfileProgress, UserCard, useGetUserByIdQuery } from '@/entities/user'
 
+import { EditUserProfileForm } from '@/features/edit-user-profile'
+
 import { TodoList } from '@/widgets/todo-list'
 
 import styles from './profile-page.module.scss'
@@ -34,6 +36,8 @@ export default function ProfilePage() {
       </Title>
 
       <UserCard user={user} />
+
+      <EditUserProfileForm user={user} />
 
       <ProfileProgress />
 
