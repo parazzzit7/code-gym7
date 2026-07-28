@@ -1,16 +1,11 @@
 'use client'
 
-import { Alert, Button, Spin, Typography } from 'antd'
+import { Alert, Button, Spin } from 'antd'
 
-import { ProfileProgress, UserCard, useGetUserByIdQuery } from '@/entities/user'
-
+import { useGetUserByIdQuery } from '@/entities/user'
 import { EditUserProfileForm } from '@/features/edit-user-profile'
 
-import { TodoList } from '@/widgets/todo-list'
-
 import styles from './profile-page.module.scss'
-
-const { Title } = Typography
 
 export default function ProfilePage() {
   const { data: user, isLoading, isError, refetch } = useGetUserByIdQuery(1)
@@ -22,26 +17,18 @@ export default function ProfilePage() {
   if (isError || !user) {
     return (
       <Alert
-        type="error"
-        message="Не удалось загрузить пользователя"
         action={<Button onClick={refetch}>Повторить</Button>}
+        message="Не удалось загрузить профиль"
+        type="error"
       />
     )
   }
 
   return (
     <div className={styles.page}>
-      <Title className={styles.title} level={1}>
-        Профиль
-      </Title>
-
-      <UserCard user={user} />
+      <h1>Профиль</h1>
 
       <EditUserProfileForm user={user} />
-
-      <ProfileProgress />
-
-      <TodoList userId={user.id} />
     </div>
   )
 }

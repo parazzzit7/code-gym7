@@ -3,9 +3,7 @@
 import { useState } from 'react'
 import { Alert, Avatar, Button, Form, Input, Progress, Select, Statistic } from 'antd'
 
-import { PROFILE_SKILLS, PROFILE_STATISTICS } from '@/entities/user/model/profile.constants'
-
-import { useUpdateUserMutation, type User } from '@/entities/user'
+import { PROFILE_SKILLS, PROFILE_STATISTICS, useUpdateUserMutation, type User } from '@/entities/user'
 
 import styles from './edit-user-profile-form.module.scss'
 

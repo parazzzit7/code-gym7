@@ -1,6 +1,5 @@
 export { useGetUserByIdQuery, useUpdateUserMutation } from './api/user-api'
 
-export { ProfileProgress } from './ui/profile-progress/profile-progress'
-export { UserCard } from './ui/user-card/user-card'
+export { PROFILE_SKILLS, PROFILE_STATISTICS } from './model/profile.constants'
 
 export type { UpdateUserRequest, User } from './model/user.types'
