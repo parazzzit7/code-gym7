@@ -1,0 +1,28 @@
+.wrapper {
+  display: grid;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions a,
+  .actions button {
+    width: 100%;
+  }
+}
