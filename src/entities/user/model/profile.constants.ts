@@ -16,18 +16,3 @@ export const PROFILE_SKILLS = [
     percent: 19,
   },
 ] as const
-
-export const PROFILE_STATISTICS = [
-  {
-    title: 'Решённые задачи',
-    value: 15,
-  },
-  {
-    title: 'Собеседования',
-    value: 4,
-  },
-  {
-    title: 'Дней подряд',
-    value: 30,
-  },
-] as const
