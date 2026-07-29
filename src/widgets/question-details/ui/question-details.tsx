@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Alert, Button, Spin, Tag } from 'antd'
 
-import { useGetTodoByIdQuery } from '@/entities/todo'
+import { getInterviewTopic, getInterviewTopicContent, useGetTodoByIdQuery } from '@/entities/todo'
 import { ToggleTodoControl } from '@/features/toggle-todo'
 
 import styles from './question-details.module.scss'
@@ -23,6 +23,9 @@ export function QuestionDetails({ todoId }: QuestionDetailsProps) {
     return <Alert action={<Button onClick={refetch}>Повторить</Button>} message="Тема не найдена" type="error" />
   }
 
+  const topic = getInterviewTopic(todo.id)
+  const content = getInterviewTopicContent(todo.id)
+
   return (
     <article className={styles.page}>
       <Link className={styles.back} href="/questions">
@@ -31,45 +34,43 @@ export function QuestionDetails({ todoId }: QuestionDetailsProps) {
 
       <header className={styles.header}>
         <div>
-          <span className={styles.eyebrow}>Вопрос #{todo.id}</span>
+          <div className={styles.meta}>
+            <Tag color="blue">{topic.category}</Tag>
+            <span>Вопрос #{todo.id}</span>
+          </div>
 
-          <h1>{todo.title}</h1>
+          <h1>{topic.title}</h1>
         </div>
 
-        <Tag color={todo.completed ? 'green' : 'blue'}>{todo.completed ? 'Изучено' : 'Не изучено'}</Tag>
+        <Tag color={todo.completed ? 'green' : 'default'}>{todo.completed ? 'Изучено' : 'Не изучено'}</Tag>
       </header>
 
       <section className={styles.section}>
-        <h2>Описание темы</h2>
-
-        <p>Изучи вопрос, сформулируй собственный ответ и подготовь несколько практических примеров.</p>
+        <h2>Определение</h2>
+        <p>{content.definition}</p>
       </section>
 
       <section className={styles.section}>
-        <h2>Информация</h2>
+        <h2>Пример</h2>
 
-        <dl className={styles.information}>
-          <div>
-            <dt>ID вопроса</dt>
-            <dd>{todo.id}</dd>
-          </div>
+        <pre className={styles.code}>
+          <code>{content.example}</code>
+        </pre>
+      </section>
 
-          <div>
-            <dt>ID пользователя</dt>
-            <dd>{todo.userId}</dd>
-          </div>
+      <section className={styles.section}>
+        <h2>Что рассказать на собеседовании</h2>
 
-          <div>
-            <dt>Текущий статус</dt>
-            <dd>{todo.completed ? 'Тема изучена' : 'Нужно изучить'}</dd>
-          </div>
-        </dl>
+        <ul className={styles.points}>
+          {content.keyPoints.map(point => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
       </section>
 
       <section className={styles.progress}>
         <div>
           <h2>Прогресс</h2>
-
           <p>Отметь тему после изучения.</p>
         </div>
 

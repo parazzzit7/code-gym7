@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Button, Tag } from 'antd'
 
+import { getInterviewTopic } from '../../model/interview-topics'
 import type { Todo } from '../../model/todo.types'
 
 import styles from './question-card.module.scss'
@@ -10,23 +11,23 @@ type QuestionCardProps = {
 }
 
 export function QuestionCard({ todo }: QuestionCardProps) {
+  const topic = getInterviewTopic(todo.id)
+
   return (
-    <article className={styles.card}>
-      <div className={styles.number}>{todo.id}</div>
+    <article className={styles.questionCard}>
+      <Tag color="blue">{topic.category}</Tag>
 
-      <div className={styles.content}>
-        <strong>{todo.title}</strong>
+      <h2 className={styles.topicTitle}>{topic.title}</h2>
 
-        <span>Вопрос для подготовки к техническому собеседованию</span>
+      <p className={styles.topicDescription}>{topic.description}</p>
+
+      <div className={styles.cardFooter}>
+        <Tag color={todo.completed ? 'green' : 'default'}>{todo.completed ? 'Изучено' : 'Не изучено'}</Tag>
+
+        <Link href={`/questions/${todo.id}`}>
+          <Button type="primary">Перейти к теме</Button>
+        </Link>
       </div>
-
-      <Tag color={todo.completed ? 'green' : 'blue'}>{todo.completed ? 'Изучено' : 'Не изучено'}</Tag>
-
-      <Link href={`/questions/${todo.id}`}>
-        <Button size="small" type="primary">
-          Перейти к теме
-        </Button>
-      </Link>
     </article>
   )
 }

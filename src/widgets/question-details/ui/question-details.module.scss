@@ -1,20 +1,17 @@
 .page {
   display: grid;
-  gap: 20px;
-
-  width: min(100%, 820px);
+  gap: 24px;
+  width: min(100%, 900px);
   margin: 0 auto;
-  padding: 28px;
-
+  padding: 32px;
   border: 1px solid #e5e7eb;
-  border-radius: 4px;
+  border-radius: 6px;
   background: #ffffff;
 }
 
 .back {
   justify-self: start;
   color: #1762c4;
-  font-size: 13px;
   text-decoration: none;
 }
 
@@ -26,57 +23,56 @@
 }
 
 .header h1 {
-  margin: 6px 0 0;
-  font-size: 25px;
-  line-height: 1.3;
+  margin: 12px 0 0;
+  font-size: 30px;
+  line-height: 1.25;
 }
 
-.eyebrow {
-  color: #1762c4;
-  font-size: 12px;
-  font-weight: 600;
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 13px;
 }
 
 .section {
-  padding-top: 20px;
+  padding-top: 24px;
   border-top: 1px solid #edf0f4;
 }
 
 .section h2,
 .progress h2 {
-  margin: 0 0 10px;
-  font-size: 15px;
+  margin: 0 0 12px;
+  font-size: 18px;
 }
 
 .section p,
 .progress p {
   margin: 0;
-  color: #64748b;
-  font-size: 13px;
+  color: #475569;
   line-height: 1.7;
 }
 
-.information {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+.code {
+  overflow-x: auto;
   margin: 0;
+  padding: 20px;
+  border-radius: 6px;
+  background: #f4f6f8;
+  color: #172033;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre;
 }
 
-.information div {
-  padding: 12px;
-  background: #f7f9fc;
-}
-
-.information dt {
-  color: #64748b;
-  font-size: 11px;
-}
-
-.information dd {
-  margin: 5px 0 0;
-  font-size: 13px;
-  font-weight: 600;
+.points {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 22px;
+  color: #475569;
+  line-height: 1.6;
 }
 
 .progress {
@@ -84,15 +80,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-
-  padding: 18px;
-  border-radius: 4px;
+  padding: 20px;
+  border-radius: 6px;
   background: #eef5ff;
 }
 
 @media (max-width: 600px) {
   .page {
-    padding: 18px 14px;
+    padding: 20px 16px;
   }
 
   .header {
@@ -100,14 +95,11 @@
   }
 
   .header h1 {
-    font-size: 21px;
-  }
-
-  .information {
-    grid-template-columns: 1fr;
+    font-size: 24px;
   }
 
   .progress {
     align-items: flex-start;
+    flex-direction: column;
   }
 }
