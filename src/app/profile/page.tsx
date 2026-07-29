@@ -2,22 +2,42 @@
 
 import { Alert, Button, Spin } from 'antd'
 
+import { useGetTodosByUserIdQuery } from '@/entities/todo'
 import { useGetUserByIdQuery } from '@/entities/user'
 import { EditUserProfileForm } from '@/features/edit-user-profile'
 
 import styles from './profile-page.module.scss'
 
-export default function ProfilePage() {
-  const { data: user, isLoading, isError, refetch } = useGetUserByIdQuery(1)
+const USER_ID = 1
 
-  if (isLoading) {
+export default function ProfilePage() {
+  const {
+    data: user,
+    isLoading: isUserLoading,
+    isError: isUserError,
+    refetch: refetchUser,
+  } = useGetUserByIdQuery(USER_ID)
+
+  const {
+    data: todos,
+    isLoading: areTodosLoading,
+    isError: areTodosError,
+    refetch: refetchTodos,
+  } = useGetTodosByUserIdQuery(USER_ID)
+
+  if (isUserLoading || areTodosLoading) {
     return <Spin size="large" />
   }
 
-  if (isError || !user) {
+  if (isUserError || areTodosError || !user || !todos) {
+    const handleRefetch = () => {
+      refetchUser()
+      refetchTodos()
+    }
+
     return (
       <Alert
-        action={<Button onClick={refetch}>Повторить</Button>}
+        action={<Button onClick={handleRefetch}>Повторить</Button>}
         message="Не удалось загрузить профиль"
         type="error"
       />
@@ -28,7 +48,7 @@ export default function ProfilePage() {
     <div className={styles.page}>
       <h1>Профиль</h1>
 
-      <EditUserProfileForm user={user} />
+      <EditUserProfileForm todos={todos} user={user} />
     </div>
   )
 }

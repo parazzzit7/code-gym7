@@ -3,7 +3,14 @@
 import { useState } from 'react'
 import { Alert, Avatar, Button, Form, Input, Progress, Select, Statistic } from 'antd'
 
-import { PROFILE_SKILLS, PROFILE_STATISTICS, useUpdateUserMutation, type User } from '@/entities/user'
+import type { Todo } from '@/entities/todo'
+import {
+  PROFILE_SKILLS,
+  useUpdateUserMutation,
+  type User,
+  type UserGrade,
+  type UserSpecialization,
+} from '@/entities/user'
 
 import styles from './edit-user-profile-form.module.scss'
 
@@ -11,6 +18,7 @@ const { TextArea } = Input
 
 type EditUserProfileFormProps = {
   user: User
+  todos: Todo[]
 }
 
 type ProfileFormValues = {
@@ -18,16 +26,33 @@ type ProfileFormValues = {
   username: string
   email: string
   phone: string
-  website: string
-  grade: string
-  specialization: string
+  grade: UserGrade
+  specialization: UserSpecialization
   about: string
+  links: string[]
 }
 
-export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
+export function EditUserProfileForm({ user, todos }: EditUserProfileFormProps) {
   const [isSaved, setIsSaved] = useState(false)
 
   const [updateUser, { isLoading, isError }] = useUpdateUserMutation()
+
+  const completedTodosCount = todos.filter(todo => todo.completed).length
+
+  const statistics = [
+    {
+      title: 'Решённые задачи',
+      value: completedTodosCount,
+    },
+    {
+      title: 'Всего вопросов',
+      value: todos.length,
+    },
+    {
+      title: 'Дней подряд',
+      value: 30,
+    },
+  ]
 
   const initials = user.name
     .split(' ')
@@ -47,7 +72,11 @@ export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
           username: values.username,
           email: values.email,
           phone: values.phone,
-          website: values.website,
+          website: values.links[0] ?? '',
+          grade: values.grade,
+          specialization: values.specialization,
+          about: values.about,
+          links: values.links,
         },
       }).unwrap()
 
@@ -60,17 +89,17 @@ export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
   return (
     <Form<ProfileFormValues>
       className={styles.profile}
-      layout="vertical"
       initialValues={{
         name: user.name,
         username: user.username,
         email: user.email,
         phone: user.phone,
-        website: user.website,
-        grade: 'junior',
-        specialization: 'frontend',
-        about: 'Изучаю frontend-разработку и готовлюсь к техническим собеседованиям.',
+        grade: user.grade,
+        specialization: user.specialization,
+        about: user.about,
+        links: user.links,
       }}
+      layout="vertical"
       onFinish={handleSubmit}>
       <div className={styles.top}>
         <div className={styles.avatarBlock}>
@@ -124,24 +153,36 @@ export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
           </div>
         </section>
 
-        <aside className={styles.subscription}>
-          <h2>Подписка</h2>
+        <aside className={styles.tips}>
+          <h2>Подсказки</h2>
 
-          <strong>Без подписки</strong>
-
-          <p>Получи доступ к дополнительным вопросам, статистике и материалам.</p>
+          <strong>Рекомендации по профилю</strong>
 
           <ul>
-            <li>Новые вопросы</li>
-            <li>Расширенная статистика</li>
-            <li>Персональный план</li>
+            <li>Заполни все поля профиля.</li>
+            <li>Укажи актуальные навыки.</li>
+            <li>Регулярно обновляй информацию.</li>
           </ul>
 
-          <Button block htmlType="button" type="primary">
-            Выбрать подписку
-          </Button>
+          <strong>Полезная информация</strong>
+
+          <p>Чем подробнее заполнен профиль, тем проще отслеживать прогресс обучения.</p>
         </aside>
       </div>
+
+      <section className={`${styles.section} ${styles.subscriptionRow}`}>
+        <div>
+          <h2>Подписка</h2>
+
+          <strong>Нет активной подписки</strong>
+
+          <p>Оформи подписку, чтобы получить доступ к дополнительным материалам.</p>
+        </div>
+
+        <Button htmlType="button" type="primary">
+          Оформить
+        </Button>
+      </section>
 
       <section className={styles.section}>
         <div className={styles.sectionTitle}>
@@ -155,7 +196,7 @@ export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
       <section className={styles.section}>
         <div className={styles.twoColumns}>
           <Form.Item label="Грейд" name="grade">
-            <Select
+            <Select<UserGrade>
               options={[
                 {
                   label: 'Junior',
@@ -174,7 +215,7 @@ export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
           </Form.Item>
 
           <Form.Item label="Специализация" name="specialization">
-            <Select
+            <Select<UserSpecialization>
               options={[
                 {
                   label: 'Frontend-разработчик',
@@ -223,7 +264,7 @@ export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
         <h2>Статистика</h2>
 
         <div className={styles.statistics}>
-          {PROFILE_STATISTICS.map(item => (
+          {statistics.map(item => (
             <div className={styles.statistic} key={item.title}>
               <Statistic title={item.title} value={item.value} />
             </div>
@@ -232,11 +273,43 @@ export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
       </section>
 
       <section className={styles.section}>
-        <h2>Полезные ссылки</h2>
+        <h2>Личные ссылки</h2>
 
-        <Form.Item label="Сайт" name="website">
-          <Input prefix="https://" />
-        </Form.Item>
+        <Form.List name="links">
+          {(fields, { add, remove }) => (
+            <>
+              <div className={styles.links}>
+                {fields.map((field, index) => (
+                  <div className={styles.linkRow} key={field.key}>
+                    <Form.Item
+                      {...field}
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Введите адрес сайта',
+                        },
+                      ]}>
+                      <Input prefix="https://" placeholder="example.com" />
+                    </Form.Item>
+
+                    <Button
+                      aria-label={`Удалить ссылку ${index + 1}`}
+                      danger
+                      htmlType="button"
+                      onClick={() => remove(field.name)}
+                      type="text">
+                      ×
+                    </Button>
+                  </div>
+                ))}
+              </div>
+
+              <Button className={styles.addLink} htmlType="button" onClick={() => add('')} type="link">
+                + Добавить сайт
+              </Button>
+            </>
+          )}
+        </Form.List>
       </section>
 
       {isError && <Alert className={styles.message} message="Не удалось сохранить профиль" type="error" />}

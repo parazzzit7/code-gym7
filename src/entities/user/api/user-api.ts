@@ -2,10 +2,20 @@ import { baseApi } from '@/shared/api'
 
 import type { UpdateUserRequest, User } from '../model/user.types'
 
+type JsonPlaceholderUser = Omit<User, 'grade' | 'specialization' | 'about' | 'links'>
+
 const userApiWithQueries = baseApi.injectEndpoints({
   endpoints: builder => ({
     getUserById: builder.query<User, number>({
       query: userId => `/users/${userId}`,
+
+      transformResponse: (user: JsonPlaceholderUser): User => ({
+        ...user,
+        grade: 'junior',
+        specialization: 'frontend',
+        about: 'Изучаю frontend-разработку и готовлюсь к техническим собеседованиям.',
+        links: [user.website],
+      }),
 
       providesTags: (_result, _error, userId) => [
         {

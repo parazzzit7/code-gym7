@@ -1,20 +1,24 @@
 .profile {
-  padding: 28px;
+  padding: 20px;
   border: 1px solid #e5e7eb;
   border-radius: 4px;
   background: #ffffff;
 }
 
 .profile h2 {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   font-size: 15px;
+}
+
+.profile :global(.ant-form-item) {
+  margin-bottom: 12px;
 }
 
 .top {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr) 280px;
-  gap: 28px;
+  grid-template-columns: 120px minmax(0, 1fr) 260px;
   align-items: start;
+  gap: 24px;
 }
 
 .avatarBlock {
@@ -26,14 +30,18 @@
 }
 
 .avatar {
-  background: #edf4ff;
+  background: #e8f1ff;
   color: #1762c4;
   font-weight: 700;
 }
 
+.avatarBlock strong {
+  font-size: 13px;
+}
+
 .avatarBlock span {
   color: #64748b;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .fields,
@@ -44,27 +52,65 @@
   gap: 0 18px;
 }
 
-.subscription {
-  padding: 18px;
+.tips {
+  padding: 16px;
   border-radius: 4px;
-  background: #eef5ff;
-  font-size: 12px;
+  background: #eaf3ff;
+  font-size: 11px;
 }
 
-.subscription p {
+.tips h2 {
+  margin-bottom: 10px;
+}
+
+.tips strong {
+  display: block;
+  color: #1762c4;
+  font-size: 11px;
+}
+
+.tips ul {
+  display: grid;
+  gap: 5px;
+  margin: 8px 0 14px;
+  padding-left: 17px;
+  line-height: 1.4;
+}
+
+.tips p {
+  margin: 6px 0 0;
   line-height: 1.5;
 }
 
-.subscription ul {
-  display: grid;
-  gap: 6px;
-  padding-left: 18px;
+.section {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #edf0f4;
 }
 
-.section {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid #edf0f4;
+.subscriptionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.subscriptionRow h2 {
+  margin-bottom: 5px;
+}
+
+.subscriptionRow strong {
+  font-size: 12px;
+}
+
+.subscriptionRow p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.subscriptionRow button {
+  min-width: 110px;
 }
 
 .sectionTitle,
@@ -76,33 +122,35 @@
 
 .skillTitle {
   margin-bottom: 4px;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .skills {
-  gap: 14px 28px;
+  gap: 12px 28px;
 }
 
 .statistics {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 560px;
 }
 
 .statistic {
-  padding: 14px;
+  padding: 12px;
   border: 1px solid #edf0f4;
   border-radius: 4px;
+  background: #f8fafc;
 }
 
 .message {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .actions {
   display: flex;
   justify-content: center;
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .actions button {
@@ -111,38 +159,46 @@
 
 @media (max-width: 900px) {
   .top {
-    grid-template-columns: 130px minmax(0, 1fr);
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 20px;
   }
 
-  .subscription {
+  .tips {
     grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 600px) {
   .profile {
-    padding: 18px 14px;
+    padding: 16px 12px;
   }
 
   .top {
     grid-template-columns: 1fr;
   }
 
+  .avatarBlock {
+    padding-bottom: 8px;
+  }
+
   .fields,
-  .twoColumns {
+  .twoColumns,
+  .skills {
     grid-template-columns: 1fr;
   }
 
-  .skills {
-    gap: 12px 18px;
+  .subscriptionRow {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .subscriptionRow button {
+    width: 100%;
   }
 
   .statistics {
-    gap: 6px;
-  }
-
-  .statistic {
-    padding: 8px;
+    grid-template-columns: 1fr;
+    max-width: none;
   }
 
   .actions button {
