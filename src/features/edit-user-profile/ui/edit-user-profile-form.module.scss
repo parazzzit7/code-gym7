@@ -1,0 +1,462 @@
+.profile {
+  width: 100%;
+  color: #171717;
+  font-size: 12px;
+}
+
+.profile :global(.ant-form-item) {
+  margin-bottom: 0;
+}
+
+.profile :global(.ant-form-item-label) {
+  padding-bottom: 4px;
+}
+
+.profile :global(.ant-form-item-label label) {
+  height: auto;
+  color: #171717;
+  font-size: 12px;
+}
+
+.profile :global(.ant-input),
+.profile :global(.ant-select-selector) {
+  border-color: transparent !important;
+  border-radius: 4px !important;
+  background: #f3f5f8 !important;
+  box-shadow: none !important;
+  font-size: 11px;
+}
+
+.profile :global(.ant-input) {
+  min-height: 30px;
+  padding-inline: 9px;
+}
+
+.profile :global(.ant-select-selector) {
+  min-height: 30px !important;
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 605px) 270px;
+  align-items: start;
+  gap: 40px;
+}
+
+.mainColumn {
+  min-width: 0;
+}
+
+.identity {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  align-items: start;
+  gap: 30px;
+}
+
+.avatarPlaceholder {
+  display: grid;
+  place-items: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 5px;
+  background: #e4efff;
+  color: #0965d5;
+}
+
+.avatarPlaceholder svg {
+  width: 58px;
+  height: 58px;
+}
+
+.contactFields {
+  display: grid;
+  gap: 8px;
+}
+
+.telegramRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 26px;
+  font-size: 12px;
+}
+
+.telegramRow :global(.ant-tag) {
+  margin: 0;
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.fieldLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fieldLabel :global(.anticon) {
+  color: #0965d5;
+  font-size: 12px;
+}
+
+.subscription {
+  margin-top: 18px;
+}
+
+.subscription h2,
+.levelSection h2,
+.section h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 8px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.subscription h2 :global(.anticon),
+.levelSection h2 :global(.anticon),
+.section h2 :global(.anticon) {
+  color: #0965d5;
+  font-size: 13px;
+}
+
+.subscriptionContent {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 9px;
+  border-radius: 4px;
+  background: #f3f5f8;
+}
+
+.subscriptionContent strong {
+  display: block;
+  font-size: 10px;
+}
+
+.subscriptionContent p {
+  margin: 2px 0 0;
+  font-size: 9px;
+}
+
+.subscriptionContent button {
+  height: 24px;
+  padding-inline: 13px;
+  font-size: 9px;
+}
+
+.levelSection {
+  margin-top: 14px;
+}
+
+.levelCard {
+  position: relative;
+  padding: 9px;
+  border-radius: 4px;
+  background: #f3f5f8;
+}
+
+.levelCard strong {
+  display: block;
+  font-size: 10px;
+}
+
+.levelCard p {
+  margin: 2px 0 4px;
+  font-size: 9px;
+}
+
+.levelCard :global(.ant-progress) {
+  display: block;
+  margin: 0;
+  line-height: 1;
+}
+
+.levelCard :global(.ant-progress-inner) {
+  height: 5px;
+}
+
+.levelCard :global(.ant-progress-bg) {
+  height: 5px !important;
+}
+
+.levelCaption {
+  display: block;
+  margin-top: 4px;
+  font-size: 8px;
+  text-align: right;
+}
+
+.section {
+  margin-top: 14px;
+}
+
+.twoColumns,
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 55px;
+}
+
+.twoColumns :global(.ant-form-item-label label) {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.skills {
+  gap: 8px 55px;
+}
+
+.skill {
+  min-width: 0;
+}
+
+.skillTitle {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 2px;
+  font-size: 9px;
+}
+
+.skill :global(.ant-progress) {
+  display: block;
+  margin: 0;
+  line-height: 1;
+}
+
+.skill :global(.ant-progress-inner) {
+  height: 5px;
+}
+
+.skill :global(.ant-progress-bg) {
+  height: 5px !important;
+}
+
+.profile textarea {
+  min-height: 105px !important;
+  padding: 10px !important;
+  resize: vertical;
+}
+
+.statistics {
+  display: grid;
+  grid-template-columns: repeat(3, 105px);
+  gap: 55px;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 4px;
+  background: #f3f5f8;
+}
+
+.statistic {
+  display: grid;
+  min-height: 64px;
+  place-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.statistic :global(.ant-statistic-title) {
+  margin-bottom: 3px;
+  color: #171717;
+  font-size: 9px;
+}
+
+.statistic :global(.ant-statistic-content) {
+  color: #0965d5;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.linksBlock {
+  width: 448px;
+  max-width: 100%;
+  padding: 9px;
+  border-radius: 4px;
+  background: #f3f5f8;
+}
+
+.links {
+  display: grid;
+}
+
+.linkRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 25px;
+  align-items: start;
+}
+
+.linkRow :global(.ant-form-item) {
+  margin: 0;
+}
+
+.linkRow :global(.ant-input) {
+  min-height: 25px;
+  padding: 3px 6px;
+  border: 0 !important;
+  border-bottom: 1px solid #aec8eb !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-size: 9px;
+}
+
+.linkRow button {
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  font-size: 14px;
+}
+
+.addLink {
+  height: 24px;
+  padding: 2px 6px;
+  font-size: 9px;
+}
+
+.message {
+  margin-top: 12px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.actions button {
+  width: 240px;
+  height: 30px;
+  font-size: 10px;
+}
+
+.tips {
+  padding: 14px;
+  border-radius: 5px;
+  background: #e4efff;
+  font-size: 10px;
+}
+
+.tips h2 {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+
+.tips h3 {
+  margin: 10px 0 5px;
+  color: #0965d5;
+  font-size: 10px;
+}
+
+.tips p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.tips ul {
+  margin: 5px 0 0;
+  padding-left: 14px;
+  line-height: 1.4;
+}
+
+.scores {
+  display: grid;
+  gap: 5px;
+  margin: 10px 0 0;
+}
+
+.scores div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.scores dt,
+.scores dd {
+  margin: 0;
+  font-size: 9px;
+}
+
+.scores dd {
+  font-weight: 600;
+}
+
+@media (max-width: 950px) {
+  .profileGrid {
+    grid-template-columns: minmax(0, 1fr) 230px;
+    gap: 24px;
+  }
+
+  .identity {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .avatarPlaceholder {
+    width: 120px;
+    height: 120px;
+  }
+
+  .statistics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tips {
+    grid-row: 1;
+  }
+
+  .mainColumn {
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .identity {
+    grid-template-columns: 1fr;
+  }
+
+  .avatarPlaceholder {
+    width: 110px;
+    height: 110px;
+  }
+
+  .twoColumns,
+  .skills {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .subscriptionContent {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .subscriptionContent button {
+    width: 100%;
+  }
+
+  .statistics {
+    gap: 5px;
+  }
+
+  .statistic {
+    padding: 5px;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,26 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.content {
+  flex: 1;
+  width: min(100% - 40px, 1120px);
+  margin: 0 auto;
+  padding: 28px 0 18px;
+}
+
+@media (max-width: 900px) {
+  .content {
+    width: min(100% - 28px, 1120px);
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    width: min(100% - 20px, 1120px);
+    padding: 20px 0 96px;
+  }
+}

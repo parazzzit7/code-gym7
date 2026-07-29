@@ -1,0 +1,105 @@
+.page {
+  display: grid;
+  gap: 24px;
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: 32px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.back {
+  justify-self: start;
+  color: #1762c4;
+  text-decoration: none;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.header h1 {
+  margin: 12px 0 0;
+  font-size: 30px;
+  line-height: 1.25;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.section {
+  padding-top: 24px;
+  border-top: 1px solid #edf0f4;
+}
+
+.section h2,
+.progress h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.section p,
+.progress p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.code {
+  overflow-x: auto;
+  margin: 0;
+  padding: 20px;
+  border-radius: 6px;
+  background: #f4f6f8;
+  color: #172033;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.points {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 22px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 6px;
+  background: #eef5ff;
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 20px 16px;
+  }
+
+  .header {
+    display: grid;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .progress {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
