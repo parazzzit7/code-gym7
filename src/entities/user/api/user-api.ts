@@ -12,9 +12,9 @@ const userApiWithQueries = baseApi.injectEndpoints({
       transformResponse: (user: JsonPlaceholderUser): User => ({
         ...user,
         grade: 'junior',
-        specialization: 'frontend',
-        about: 'Изучаю frontend-разработку и готовлюсь к техническим собеседованиям.',
-        links: [user.website],
+        specialization: 'backend',
+        about: '',
+        links: [user.website, 'my-portfolio.com'],
       }),
 
       providesTags: (_result, _error, userId) => [

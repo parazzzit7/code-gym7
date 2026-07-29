@@ -1,6 +1,9 @@
 .page {
+  margin: 0 auto;
   display: grid;
   gap: 18px;
+  width: 100%;
+  max-width: 915px;
 }
 
 .page h1 {

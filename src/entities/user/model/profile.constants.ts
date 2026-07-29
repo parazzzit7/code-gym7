@@ -4,15 +4,15 @@ export const PROFILE_SKILLS = [
     percent: 80,
   },
   {
+    name: 'Next.js',
+    percent: 65,
+  },
+  {
     name: 'TypeScript',
     percent: 30,
   },
   {
-    name: 'Node.js',
-    percent: 60,
-  },
-  {
     name: 'JavaScript',
-    percent: 19,
+    percent: 15,
   },
 ] as const
