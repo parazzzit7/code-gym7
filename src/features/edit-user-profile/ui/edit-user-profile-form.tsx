@@ -115,7 +115,7 @@ export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
             </Form.Item>
 
             <Form.Item label="Telegram" name="username">
-              <Input addonBefore="@" />
+              <Input prefix="@" />
             </Form.Item>
 
             <Form.Item label="Телефон" name="phone">
@@ -235,7 +235,7 @@ export function EditUserProfileForm({ user }: EditUserProfileFormProps) {
         <h2>Полезные ссылки</h2>
 
         <Form.Item label="Сайт" name="website">
-          <Input addonBefore="https://" />
+          <Input prefix="https://" />
         </Form.Item>
       </section>
 
